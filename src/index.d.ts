@@ -85,6 +85,7 @@ export interface PaymentInformationVariables {
     option_name2: string;       // Option 2 name as requested by you. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
     option_selection1: string;  // Option 1 choice as entered by your customer. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
     option_selection2: string;  // Option 2 choice as entered by your customer. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
+    item_name: string;          // Single item name, applicable for non-cart checkouts.
     item_name1: string;         // item_name<x>
     item_number1: string;       // item_number<x>
     quantity1: string;          // Quantity entered by your customer or passed by you, the merchant. If this is a shopping cart transaction, PayPal appends the number of the item (e.g. quantity1, quantity2).
