@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/JorgenVatle/paypal-ipn-types/issues"
   },
-  "homepage": "https://github.com/JorgenVatle/paypal-ipn-types#readme"
+  "homepage": "https://github.com/JorgenVatle/paypal-ipn-types#readme",
+  "devDependencies": {
+    "typescript": "^3.4.2"
+  }
 }
