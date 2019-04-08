@@ -3,32 +3,62 @@
  * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#ipn-transaction-types
  */
 export type TransactionType =
-    'adjustment'
-    | 'cart'
-    | 'express_checkout'
-    | 'masspay'
-    | 'merch_pmt'
-    | 'mp_cancel'
-    | 'new_case'
-    | 'payout'
-    | 'pro_hosted'
-    | 'recurring_payment'
-    | 'recurring_payment_expired'
+    /**
+     * Payment received;
+     * source is any of the following:
+     *
+     * - A Direct Credit Card (Pro) transaction
+     * - A Buy Now, Donation or Smart Logo for eBay auctions button.
+     */
+    'web_accept'
+
+    /**
+     * Recurring payment failed
+     * This transaction type is sent if:
+     *
+     * - The attempt to collect a recurring payment fails
+     * - The "max failed payments" setting in the customer's recurring payment profile is 0,
+     *   In this case, PayPal tries to collect the recurring payment an unlimited number of
+     *   times without ever suspending the customer's recurring payments profile.
+     */
     | 'recurring_payment_failed'
-    | 'recurring_payment_profile_cancel'
-    | 'recurring_payment_profile_created'
-    | 'recurring_payment_skipped'
-    | 'recurring_payment_suspended'
+
+    /**
+     * Recurring payment failed and the related recurring payment profile has been suspended.
+     * This transaction type is sent if:
+     *
+     * - PayPal's attempt to collect a recurring payment failed
+     * - The "max failed payments" setting in the customer's recurring payment profile is 1 or greater
+     * - the number of attempts to collect payment has exceeded the value specified for "max failed payments",
+     *   In this case, PayPal suspends the customer's recurring payment profile.
+     */
     | 'recurring_payment_suspended_due_to_max_failed_payment'
-    | 'send_money'
-    | 'subscr_cancel'
-    | 'subscr_eot'
-    | 'subscr_failed'
-    | 'subscr_modify'
-    | 'subscr_payment'
-    | 'subscr_signup'
-    | 'virtual_terminal'
-    | 'web_accept';
+
+    | 'adjustment'          // A dispute has been resolved and closed
+    | 'cart'                // Payment received for multiple items; source is Express Checkout or the PayPal Shopping Cart.
+    | 'express_checkout'    // Payment received for a single item; source is Express Checkout
+    | 'masspay'             // Payment sent using Mass Pay
+    | 'merch_pmt'           // Monthly subscription paid for Website Payments Pro, Reference transactions, or Billing Agreements
+    | 'mp_cancel'           // Billing agreement cancelled
+    | 'new_case'            // A new dispute was filed
+    | 'payout'              // A payout related to a global shipping transaction was completed.
+    | 'pro_hosted'          // Payment received; source is Website Payments Pro Hosted Solution.
+    | 'send_money'          // Payment received; source is the Send Money tab on the PayPal website
+    | 'subscr_cancel'       // Subscription cancelled.
+    | 'subscr_eot'          // Subscription expired.
+    | 'subscr_failed'       // Subscription payment failed.
+    | 'subscr_modify'       // Subscription modified.
+    | 'subscr_payment'      // Subscription payment received.
+    | 'subscr_signup'       // Subscription started.
+    | 'virtual_terminal'    // Payment received; source is Virtual Terminal.
+    | 'recurring_payment'   // Recurring payment received
+    | 'recurring_payment_expired'           // Recurring payment expired
+    | 'recurring_payment_profile_cancel'    // Recurring payment profile canceled
+    | 'recurring_payment_profile_created'   // Recurring payment profile created
+    | 'recurring_payment_skipped'           // Recurring payment skipped; it will be retried up to 3 times, 5 days apart
+    | 'recurring_payment_suspended';        // Recurring payment suspended. This transaction type is sent if PayPal tried to collect a recurring payment, but the related recurring payments profile has been suspended.
+
+
 
 /**
  * PayPal Payment Information Variables
