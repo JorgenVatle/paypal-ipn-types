@@ -2,7 +2,7 @@
   "name": "paypal-ipn-types",
   "version": "1.0.0",
   "description": "PayPal Instant Payment Notification (IPN) TypeScript types",
-  "types": "src/index.d.ts",
+  "types": "types/index.d.ts",
   "scripts": {
     "test": "tsc"
   },
