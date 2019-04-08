@@ -193,6 +193,6 @@ export interface BillingAgreementVariables extends PaymentInformationVariables, 
  * Reference Transaction and Billing Agreements variables
  * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#reference-transaction-and-billing-agreements-variables
  */
-export default interface PayPalIpn extends Partial<BillingAgreementVariables> {
+export default interface PayPalIpn extends Partial<BillingAgreementVariables>, NotificationVariables {
    cmd: string;
 }
