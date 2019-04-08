@@ -91,7 +91,7 @@ export interface PaymentInformationVariables {
     item_number1: string;       // item_number<x>, applicable for cart checkouts.
     quantity1: string;          // Quantity entered by your customer or passed by you, the merchant. If this is a shopping cart transaction, PayPal appends the number of the item (e.g. quantity1, quantity2).
     quantity2: string;          // Quantity entered by your customer or passed by you, the merchant. If this is a shopping cart transaction, PayPal appends the number of the item (e.g. quantity1, quantity2).
-    [s: string]: string;        // Following item, quantity and option fields. (option_name<x>, item_name<x>, option_selection<x>, item_number<x>)
+    [s: string]: string | undefined; // Following item, quantity and option fields. (option_name<x>, item_name<x>, option_selection<x>, item_number<x>)
 
     payment_type: 'echeck' | 'instant'          // Whether the payment was funded with an eCheck or PayPal balance, card or instant transfer.
     payer_status: 'verified' | 'unverified';    // Whether the customer has a verified PayPal account.
