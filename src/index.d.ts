@@ -1,14 +1,39 @@
+/**
+ * Paypal IPN transaction types
+ * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#ipn-transaction-types
+ */
+export type TransactionType = 'adjustment' | 'cart' | 'express_checkout' | 'masspay' | 'merch_pmt' | 'mp_cancel' | 'new_case' | 'payout'
+    | 'pro_hosted' | 'recurring_payment' | 'recurring_payment_expired' | 'recurring_payment_failed'
+    | 'recurring_payment_profile_cancel' | 'recurring_payment_profile_created' | 'recurring_payment_skipped'
+    | 'recurring_payment_suspended' | 'recurring_payment_suspended_due_to_max_failed_payment' | 'send_money'
+    | 'subscr_cancel' | 'subscr_eot' | 'subscr_failed' | 'subscr_modify' | 'subscr_payment' | 'subscr_signup'
+    | 'virtual_terminal' | 'web_accept';
+
+/**
+ * PayPal Payment Information Variables
+ * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#payment-information-variables
+ */
+export interface NotificationVariables {
+    business: string;       // Email or account ID of the payment recipient. Normalized to lowercase.
+    charset: string;        // Character set. (Very informative, PayPal)
+    custom: string;         // Custom value passed by you, the merchant.
+    ipn_track_id: string;   // Internal, only for use by MTS. (Whatever that is)
+    notify_version: string; // Message's version number.
+    parent_tcn_id: string;  // In the case of a refund, reversal, or canceled reversal, this variable contains the txn_id of the original transaction, while txn_id contains a new ID for the new transaction.
+    receipt_id: string;     // Unique ID generated during guest checkout (payment by credit card without logging in).
+    receiver_email: string; // Primary email address of the payment recipient (that is, the merchant). If the payment is sent to a non-primary email address on your PayPal account, the receiver_email is still your primary email.
+    receiver_id: string;    // Unique account ID of the payment recipient (i.e., the merchant). This is the same as the recipient's referral ID.
+    test_ipn?: '1';         // Whether the message is a test message. If defined and set to 1, the message comes from the PayPal sandbox.
+    verify_sign: string;    // Encrypted string used to validate the authenticity of the transaction.
+    txn_type: TransactionType; // The kind of transaction for which the IPN was sent.
+    resend?: 'true' | 'false'; // Whether this IPN message was resent.
+    residence_country: string; // ISO 3166 country code associated with the country of residence. (Of the customer?)
+    txn_id: string;            // The merchant's original transaction identification number for the payment from the buyer, against which the case was registered.
+}
+
 export default interface PayPalIpn {
-    /**
-     * Paypal IPN transaction types
-     * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#ipn-transaction-types
-     */
-    txn_type: 'adjustment' | 'cart' | 'express_checkout' | 'masspay' | 'merch_pmt' | 'mp_cancel' | 'new_case' | 'payout'
-        | 'pro_hosted' | 'recurring_payment' | 'recurring_payment_expired' | 'recurring_payment_failed'
-        | 'recurring_payment_profile_cancel' | 'recurring_payment_profile_created' | 'recurring_payment_skipped'
-        | 'recurring_payment_suspended' | 'recurring_payment_suspended_due_to_max_failed_payment' | 'send_money'
-        | 'subscr_cancel' | 'subscr_eot' | 'subscr_failed' | 'subscr_modify' | 'subscr_payment' | 'subscr_signup'
-        | 'virtual_terminal' | 'web_accept';
+
+    txn_type: TransactionType;
 
     /**
      * Reference Transaction and Billing Agreements variables
