@@ -32,20 +32,32 @@ export interface NotificationVariables {
 }
 
 /**
+ * Buyer information variables
+ * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#buyer-information-variables
+ */
+export interface BuyerInformationVariables {
+    address_country: string;        // Country of customer's address.
+    address_city: string;           // City of customer's address.
+    address_name: string;           // Name used with address (Included when the customer provides a Gift Address)
+    address_state: string;          // Customer's address state.
+    address_street: string;         // Customer's street address.
+    address_zip: string;            // Customer ZIP
+    contact_phone: string;          // Customer's telephone number.
+    first_name: string;             // First name of the customer
+    last_name: string;              // Last name of the customer
+    payer_email: string;            // Customer's primary email address. Use this email to provide any credits.
+    payer_id: string;               // Unique customer ID.
+    payer_business_name: string;    // Customer's company name, if the customer is a business.
+    address_country_code: string;   // ISO 3166 country code associated with the customers address.
+    address_status: 'confirmed' | 'unconfirmed', // Customer address status
+}
+
+/**
  * Reference Transaction and Billing Agreements variables
  * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#reference-transaction-and-billing-agreements-variables
  */
-export default interface PayPalIpn extends NotificationVariables {
-    address_country: string;// Country of customer's address.
-    address_city: string;   // City of customer's address.
-    address_name: string;   // Name used with address (Included when the customer provides a Gift Address)
-    address_state: string;  // Customer's address state.
-    address_zip: string;    // Customer ZIP
-    address_country_code: string; // ISO 3166 country code associated with the customers address.
-    address_status: 'confirmed' | 'unconfirmed', // Customer address status
+export default interface PayPalIpn extends NotificationVariables, BuyerInformationVariables {
     discount: string;       // The total discount to be applied to a shopping cart in the currency of mc_currency
-    first_name: string;     // First name of the customer
-    last_name: string;      // Last name of the customer
     invoice: string;        // Pass-through variable for identifying order invoices.
     mc_currency: string;    // Currency. E.g. USD, GBP, EUR, etc.
     mc_fee: string;         // PayPal payment fee. mc_gross minus mc_fee equals the amount disposed into receiver_email account.
@@ -60,9 +72,7 @@ export default interface PayPalIpn extends NotificationVariables {
     mp_desc?: string;       // The agreement description set in SetExpressCheckout call.
     mp_id?: string;         // The encrypted billing agreement ID.
     mp_notification: string;// Sent to the merchant when an account is locked. All billing agreements for the account are canceled.
-    payer_id: string;       // Unique customer ID.
     payment_date: string;   // Date of payment. Format: HH:MM:SS Mmm DD, YYYY PDT
-    payer_email: string;    // Customer's primary email address. Use this email to provide any credits.
     num_cart_items?: string;// If this is a PayPal Shopping Cart transaction, number of items in cart.
     shipping_method: string;// The name of a shipping method from the Shipping Calculations section of the merchant's account profile. The buyer selected the named shipping method for this transaction.
     tax: string;            // Amount of tax charged on payment. PayPal appends the number of the item. For example, item_name1, item_name2). The tax variable is included only if there was a specific tax amount applied to a particular shopping cart item. Because total tax may apply to other items in the cart, the sum of taxx might not total to tax.
