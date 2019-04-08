@@ -17,9 +17,9 @@ Pull in the package from NPM:
 import PayPalIpn from 'paypal-ipn-types';
 
 app.get('/paypal/ipn', (req, res) => {
-    const ipn: PayPalIpn = req.data;
+    const ipn: PayPalIpn = req.data; // You should now have editor auto-completes for all IPN input values.
     
-    console.log(ipn.payer_email); // You should now have editor auto-completes for all IPN input values.
+    console.log(ipn.payer_email);
 });
 ```
 
