@@ -2,12 +2,33 @@
  * Paypal IPN transaction types
  * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#ipn-transaction-types
  */
-export type TransactionType = 'adjustment' | 'cart' | 'express_checkout' | 'masspay' | 'merch_pmt' | 'mp_cancel' | 'new_case' | 'payout'
-    | 'pro_hosted' | 'recurring_payment' | 'recurring_payment_expired' | 'recurring_payment_failed'
-    | 'recurring_payment_profile_cancel' | 'recurring_payment_profile_created' | 'recurring_payment_skipped'
-    | 'recurring_payment_suspended' | 'recurring_payment_suspended_due_to_max_failed_payment' | 'send_money'
-    | 'subscr_cancel' | 'subscr_eot' | 'subscr_failed' | 'subscr_modify' | 'subscr_payment' | 'subscr_signup'
-    | 'virtual_terminal' | 'web_accept';
+export type TransactionType =
+    'adjustment'
+    | 'cart'
+    | 'express_checkout'
+    | 'masspay'
+    | 'merch_pmt'
+    | 'mp_cancel'
+    | 'new_case'
+    | 'payout'
+    | 'pro_hosted'
+    | 'recurring_payment'
+    | 'recurring_payment_expired'
+    | 'recurring_payment_failed'
+    | 'recurring_payment_profile_cancel'
+    | 'recurring_payment_profile_created'
+    | 'recurring_payment_skipped'
+    | 'recurring_payment_suspended'
+    | 'recurring_payment_suspended_due_to_max_failed_payment'
+    | 'send_money'
+    | 'subscr_cancel'
+    | 'subscr_eot'
+    | 'subscr_failed'
+    | 'subscr_modify'
+    | 'subscr_payment'
+    | 'subscr_signup'
+    | 'virtual_terminal'
+    | 'web_accept';
 
 /**
  * PayPal Payment Information Variables
@@ -80,7 +101,6 @@ export interface PaymentInformationVariables {
     shipping_method: string;  // The name of a shipping method from the Shipping Calculations section of the merchant's account profile. The buyer selected the named shipping method for this transaction.
     remaining_settle: string; // Remaining amount that can be captured with Authorization and Capture.
 
-
     option_name1: string;       // Option 1 name as requested by you. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
     option_name2: string;       // Option 2 name as requested by you. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
     option_selection1: string;  // Option 1 choice as entered by your customer. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
@@ -96,7 +116,6 @@ export interface PaymentInformationVariables {
     payment_type: 'echeck' | 'instant'          // Whether the payment was funded with an eCheck or PayPal balance, card or instant transfer.
     payer_status: 'verified' | 'unverified';    // Whether the customer has a verified PayPal account.
     echeck_time_processed: string;              // The time an eCheck was processed; for example, when the status changes to Success or Completed. (hh:mm:ss MM DD, YYYY ZONE)
-
 
     protection_eligibility: 'Eligible' | 'Ineligible' | 'Partially Eligible - INR Only' // Status of the seller's protection eligibility.
         | 'Partially Eligible - Unauth Only' | 'PartiallyEligible' | 'None'
@@ -153,7 +172,7 @@ export interface PaymentInformationVariables {
      * The filters and their ID numbers are as follows:
      */
     fraud_management_pending_filters_x:
-          '1' // AVS No Match
+        '1' // AVS No Match
         | '2' // AVS Partial Match
         | '3' // AVS Unavailable/Unsupported
         | '4' // Card Security Code (CSC) Mismatch
@@ -194,5 +213,5 @@ export interface BillingAgreementVariables extends PaymentInformationVariables, 
  * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#reference-transaction-and-billing-agreements-variables
  */
 export default interface PayPalIpn extends Partial<BillingAgreementVariables>, NotificationVariables {
-   cmd: string;
+    cmd: string;
 }
