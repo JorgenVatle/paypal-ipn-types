@@ -20,7 +20,7 @@ export interface NotificationVariables {
     ipn_track_id: string;   // Internal, only for use by MTS. (Whatever that is)
     notify_version: string; // Message's version number.
     parent_txn_id?: string;  // In the case of a refund, reversal, or canceled reversal, this variable contains the txn_id of the original transaction, while txn_id contains a new ID for the new transaction.
-    receipt_id: string;     // Unique ID generated during guest checkout (payment by credit card without logging in).
+    receipt_id?: string;     // Unique ID generated during guest checkout (payment by credit card without logging in).
     receiver_email: string; // Primary email address of the payment recipient (that is, the merchant). If the payment is sent to a non-primary email address on your PayPal account, the receiver_email is still your primary email.
     receiver_id: string;    // Unique account ID of the payment recipient (i.e., the merchant). This is the same as the recipient's referral ID.
     test_ipn?: '1';         // Whether the message is a test message. If defined and set to 1, the message comes from the PayPal sandbox.
