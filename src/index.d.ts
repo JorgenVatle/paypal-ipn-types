@@ -9,4 +9,10 @@ export default interface PayPalIpn {
         | 'recurring_payment_suspended' | 'recurring_payment_suspended_due_to_max_failed_payment' | 'send_money'
         | 'subscr_cancel' | 'subscr_eot' | 'subscr_failed' | 'subscr_modify' | 'subscr_payment' | 'subscr_signup'
         | 'virtual_terminal' | 'web_accept'
+
+    /**
+     * Payment information variables
+     * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#payment-information-variables
+     */
+    transaction_subject: string,
 }
