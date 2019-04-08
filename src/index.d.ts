@@ -31,14 +31,11 @@ export interface NotificationVariables {
     txn_id: string;            // The merchant's original transaction identification number for the payment from the buyer, against which the case was registered.
 }
 
+/**
+ * Reference Transaction and Billing Agreements variables
+ * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#reference-transaction-and-billing-agreements-variables
+ */
 export default interface PayPalIpn extends NotificationVariables {
-
-    txn_type: TransactionType;
-
-    /**
-     * Reference Transaction and Billing Agreements variables
-     * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#reference-transaction-and-billing-agreements-variables
-     */
     address_country: string;// Country of customer's address.
     address_city: string;   // City of customer's address.
     address_name: string;   // Name used with address (Included when the customer provides a Gift Address)
@@ -69,8 +66,6 @@ export default interface PayPalIpn extends NotificationVariables {
     num_cart_items?: string;// If this is a PayPal Shopping Cart transaction, number of items in cart.
     shipping_method: string;// The name of a shipping method from the Shipping Calculations section of the merchant's account profile. The buyer selected the named shipping method for this transaction.
     tax: string;            // Amount of tax charged on payment. PayPal appends the number of the item. For example, item_name1, item_name2). The tax variable is included only if there was a specific tax amount applied to a particular shopping cart item. Because total tax may apply to other items in the cart, the sum of taxx might not total to tax.
-    verify_sign: string;    // Encrypted string used to validate the authenticity of the transaction.
-    txn_id: string;         // The merchant's original transaction identification number for the payment from the buyer, against which the case was registered.
     item_name1: string;     // item_name<x>
     item_number1: string;   // item_number<x>
     quantity1: string;      // Quantity entered by your customer or passed by you, the merchant. If this is a shopping cart transaction, PayPal appends the number of the item (e.g. quantity1, quantity2).
