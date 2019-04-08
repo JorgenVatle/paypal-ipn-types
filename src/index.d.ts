@@ -19,7 +19,7 @@ export interface NotificationVariables {
     custom: string;         // Custom value passed by you, the merchant.
     ipn_track_id: string;   // Internal, only for use by MTS. (Whatever that is)
     notify_version: string; // Message's version number.
-    parent_tcn_id: string;  // In the case of a refund, reversal, or canceled reversal, this variable contains the txn_id of the original transaction, while txn_id contains a new ID for the new transaction.
+    parent_txn_id: string;  // In the case of a refund, reversal, or canceled reversal, this variable contains the txn_id of the original transaction, while txn_id contains a new ID for the new transaction.
     receipt_id: string;     // Unique ID generated during guest checkout (payment by credit card without logging in).
     receiver_email: string; // Primary email address of the payment recipient (that is, the merchant). If the payment is sent to a non-primary email address on your PayPal account, the receiver_email is still your primary email.
     receiver_id: string;    // Unique account ID of the payment recipient (i.e., the merchant). This is the same as the recipient's referral ID.
@@ -31,7 +31,7 @@ export interface NotificationVariables {
     txn_id: string;            // The merchant's original transaction identification number for the payment from the buyer, against which the case was registered.
 }
 
-export default interface PayPalIpn {
+export default interface PayPalIpn extends NotificationVariables {
 
     txn_type: TransactionType;
 
@@ -46,9 +46,6 @@ export default interface PayPalIpn {
     address_zip: string;    // Customer ZIP
     address_country_code: string; // ISO 3166 country code associated with the customers address.
     address_status: 'confirmed' | 'unconfirmed', // Customer address status
-    business: string;       // Email or account ID of the payment recipient. Normalized to lowercase.
-    charset: string;        // Character set. (Very informative, PayPal)
-    custom: string;         // Custom value passed by you, the merchant.
     discount: string;       // The total discount to be applied to a shopping cart in the currency of mc_currency
     first_name: string;     // First name of the customer
     last_name: string;      // Last name of the customer
@@ -66,7 +63,6 @@ export default interface PayPalIpn {
     mp_desc?: string;       // The agreement description set in SetExpressCheckout call.
     mp_id?: string;         // The encrypted billing agreement ID.
     mp_notification: string;// Sent to the merchant when an account is locked. All billing agreements for the account are canceled.
-    notify_version: string; // Message's version number.
     payer_id: string;       // Unique customer ID.
     payment_date: string;   // Date of payment. Format: HH:MM:SS Mmm DD, YYYY PDT
     payer_email: string;    // Customer's primary email address. Use this email to provide any credits.
