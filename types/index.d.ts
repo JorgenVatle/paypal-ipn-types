@@ -183,7 +183,6 @@ export interface BillingAgreementVariables extends PaymentInformationVariables, 
     mp_desc?: string;       // The agreement description set in SetExpressCheckout call.
     mp_id?: string;         // The encrypted billing agreement ID.
     mp_notification: string;// Sent to the merchant when an account is locked. All billing agreements for the account are canceled.
-    residence_country: string;  // ISO 3166 country code associated with the country of residence. (Of the customer?)
     shipping_discount: string;  // The discount amount for shipping charges in amount, not percentage.
     transaction_subject: string;// A note or memo for the transaction. Applicable only after notify_version >=2.6.
     mp_status: 'A' | 'I';       // The agreement status. Possible values are A for an active agreement and I for an inactive agreement (equivalent to canceled).
