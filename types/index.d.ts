@@ -176,7 +176,7 @@ export interface PaymentInformationVariables {
  * Reference Transaction and Billing Agreements variables
  * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#reference-transaction-and-billing-agreements-variables
  */
-export interface BillingAgreementVariables extends PaymentInformationVariables, BuyerInformationVariables, NotificationVariables {
+export interface BillingAgreementVariables extends PaymentInformationVariables, BuyerInformationVariables {
     mp_currency: string;    // The merchant's primary currency.
     mp_custom: string;      // Custom text passed by the merchant during DoReferenceTransaction call at creation.
     mp_cycle_start?: string;// The month and day the payment agreement was created.
