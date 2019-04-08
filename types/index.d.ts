@@ -176,7 +176,7 @@ export interface PaymentInformationVariables {
  * Reference Transaction and Billing Agreements variables
  * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#reference-transaction-and-billing-agreements-variables
  */
-export default interface PayPalIpn extends NotificationVariables, BuyerInformationVariables, PaymentInformationVariables {
+export interface BillingAgreementVariables extends PaymentInformationVariables, BuyerInformationVariables, NotificationVariables {
     mp_currency: string;    // The merchant's primary currency.
     mp_custom: string;      // Custom text passed by the merchant during DoReferenceTransaction call at creation.
     mp_cycle_start?: string;// The month and day the payment agreement was created.
@@ -188,4 +188,12 @@ export default interface PayPalIpn extends NotificationVariables, BuyerInformati
     transaction_subject: string;// A note or memo for the transaction. Applicable only after notify_version >=2.6.
     mp_status: 'A' | 'I';       // The agreement status. Possible values are A for an active agreement and I for an inactive agreement (equivalent to canceled).
     mp_pay_type: 'INSTANT' | 'ANY' | 'ECHECK';  // The accepted payment type.
+}
+
+/**
+ * Reference Transaction and Billing Agreements variables
+ * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#reference-transaction-and-billing-agreements-variables
+ */
+export default interface PayPalIpn extends Partial<BillingAgreementVariables> {
+   cmd: string;
 }
