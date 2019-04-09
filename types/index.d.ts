@@ -59,7 +59,6 @@ export type TransactionType =
     | 'recurring_payment_suspended';        // Recurring payment suspended. This transaction type is sent if PayPal tried to collect a recurring payment, but the related recurring payments profile has been suspended.
 
 
-
 /**
  * PayPal Payment Information Variables
  * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#payment-information-variables
@@ -108,44 +107,44 @@ export interface BuyerInformationVariables {
  * @link https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/#payment-information-variables
  */
 export interface PaymentInformationVariables {
-    auth_amount: string;    // Authorization amount.
-    auth_exp: string;       // Authorization expiration date and time (HH:MM:SS DD Mmm YY, YYYY PST)
-    auth_status: string;    // Status of authorization.
+    auth_amount?: string;   // Authorization amount.
+    auth_exp?: string;      // Authorization expiration date and time (HH:MM:SS DD Mmm YY, YYYY PST)
+    auth_status?: string;   // Status of authorization.
     discount: string;       // The total discount to be applied to a shopping cart in the currency of mc_currency
     invoice: string;        // Pass-through variable for identifying order invoices.
     mc_currency: string;    // Currency. E.g. USD, GBP, EUR, etc.
     mc_fee: string;         // PayPal payment fee. mc_gross minus mc_fee equals the amount disposed into receiver_email account.
     mc_gross: string;       // Full amount of the customer's payment before the transaction fee is subtracted.
-    mc_handling: string;    // Total handling amount associated with the transaction.
-    mc_shipping: string;    // Total shipping amount associated with the transaction.
+    mc_handling?: string;   // Total handling amount associated with the transaction.
+    mc_shipping?: string;   // Total shipping amount associated with the transaction.
     mc_shipping1?: string;  // mc_shipping<item_name<x>> The combined total of shipping1 and shipping2 where x is the shopping card detail item number.
-    memo: string;           // Memo as entered by your customer on PayPal's website.
-    exchange_rate: string;  // Exchange rate if a currency conversion occurred.
+    memo?: string;          // Memo as entered by your customer on PayPal's website.
+    exchange_rate?: string; // Exchange rate if a currency conversion occurred.
     payment_date: string;   // Date of payment. Format: HH:MM:SS Mmm DD, YYYY PDT
-    settle_amount: string;  // Amount that is deposited into the account's primary balance after a currency conversion from automatic conversion (through your Payment Receiving Preferences) or manual conversion (through manually accepting a payment).
+    settle_amount?: string; // Amount that is deposited into the account's primary balance after a currency conversion from automatic conversion (through your Payment Receiving Preferences) or manual conversion (through manually accepting a payment).
     quantity: string;       // Quantity entered by your customer or passed by you, the merchant. If this is a shopping cart transaction, PayPal appends the number of the item (e.g. quantity1, quantity2).
-    shipping: string;       // Shipping charges associated with this transaction. Format: unsigned, no currency symbol, two decimal places.
-    tax: string;            // Amount of tax charged on payment. PayPal appends the number of the item. For example, item_name1, item_name2). The tax variable is included only if there was a specific tax amount applied to a particular shopping cart item. Because total tax may apply to other items in the cart, the sum of taxx might not total to tax.
-    num_cart_items?: string;  // If this is a PayPal Shopping Cart transaction, number of items in cart.
-    settle_currency: string;  // Currency of settle_amount
-    shipping_method: string;  // The name of a shipping method from the Shipping Calculations section of the merchant's account profile. The buyer selected the named shipping method for this transaction.
-    remaining_settle: string; // Remaining amount that can be captured with Authorization and Capture.
+    shipping?: string;      // Shipping charges associated with this transaction. Format: unsigned, no currency symbol, two decimal places.
+    tax?: string;           // Amount of tax charged on payment. PayPal appends the number of the item. For example, item_name1, item_name2). The tax variable is included only if there was a specific tax amount applied to a particular shopping cart item. Because total tax may apply to other items in the cart, the sum of taxx might not total to tax.
+    num_cart_items?: string;    // If this is a PayPal Shopping Cart transaction, number of items in cart.
+    settle_currency?: string;   // Currency of settle_amount
+    shipping_method: string;    // The name of a shipping method from the Shipping Calculations section of the merchant's account profile. The buyer selected the named shipping method for this transaction.
+    remaining_settle?: string;  // Remaining amount that can be captured with Authorization and Capture.
 
-    option_name1: string;       // Option 1 name as requested by you. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
-    option_name2: string;       // Option 2 name as requested by you. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
-    option_selection1: string;  // Option 1 choice as entered by your customer. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
-    option_selection2: string;  // Option 2 choice as entered by your customer. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
-    item_name: string;          // Single item name, applicable for non-cart checkouts.
-    item_number: string;       // Single item number, applicable for non-cart checkouts.
-    item_name1: string;         // item_name<x>, applicable for cart checkouts.
-    item_number1: string;       // item_number<x>, applicable for cart checkouts.
-    quantity1: string;          // Quantity entered by your customer or passed by you, the merchant. If this is a shopping cart transaction, PayPal appends the number of the item (e.g. quantity1, quantity2).
-    quantity2: string;          // Quantity entered by your customer or passed by you, the merchant. If this is a shopping cart transaction, PayPal appends the number of the item (e.g. quantity1, quantity2).
+    option_name1?: string;       // Option 1 name as requested by you. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
+    option_name2?: string;       // Option 2 name as requested by you. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
+    option_selection1?: string;  // Option 1 choice as entered by your customer. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
+    option_selection2?: string;  // Option 2 choice as entered by your customer. PayPal appends the number of the item where x represents the number of the shopping cart detail item.
+    item_name?: string;          // Single item name, applicable for non-cart checkouts.
+    item_number?: string;        // Single item number, applicable for non-cart checkouts.
+    item_name1?: string;         // item_name<x>, applicable for cart checkouts.
+    item_number1?: string;       // item_number<x>, applicable for cart checkouts.
+    quantity1?: string;          // Quantity entered by your customer or passed by you, the merchant. If this is a shopping cart transaction, PayPal appends the number of the item (e.g. quantity1, quantity2).
+    quantity2?: string;          // Quantity entered by your customer or passed by you, the merchant. If this is a shopping cart transaction, PayPal appends the number of the item (e.g. quantity1, quantity2).
     [s: string]: string | undefined; // Following item, quantity and option fields. (option_name<x>, item_name<x>, option_selection<x>, item_number<x>)
 
     payment_type: 'echeck' | 'instant'          // Whether the payment was funded with an eCheck or PayPal balance, card or instant transfer.
     payer_status: 'verified' | 'unverified';    // Whether the customer has a verified PayPal account.
-    echeck_time_processed: string;              // The time an eCheck was processed; for example, when the status changes to Success or Completed. (hh:mm:ss MM DD, YYYY ZONE)
+    echeck_time_processed?: string;             // The time an eCheck was processed; for example, when the status changes to Success or Completed. (hh:mm:ss MM DD, YYYY ZONE)
 
     protection_eligibility: 'Eligible' | 'Ineligible' | 'Partially Eligible - INR Only' // Status of the seller's protection eligibility.
         | 'Partially Eligible - Unauth Only' | 'PartiallyEligible' | 'None'
@@ -163,7 +162,7 @@ export interface PaymentInformationVariables {
         | 'Processed'   // A payment has been accepted.
         | 'Voided'      // This authorization has been voided.
 
-    pending_reason:     // This variable is set only if payment_status is Pending.
+    pending_reason?:    // This variable is set only if payment_status is Pending.
         'address'               // Your Payment Receiving Preferences are set so that if a customer does not include a confirmed shipping address, you must manually accept or deny the payment. To change your preference, go to the Preferences section of your Profile.
         | 'authorization'       //  You set the payment action to Authorization and have not yet captured funds.
         | 'delayed_disbursement'// The transaction has been approved and is currently awaiting funding from the bank. This typically takes less than 48 hrs.
@@ -178,7 +177,7 @@ export interface PaymentInformationVariables {
         | 'verify'              // The payment is pending because you are not yet verified. You must verify your account before you can accept this payment.
         | 'other'               // The payment is pending for a reason other than those listed above. For more information, contact PayPal Customer Service.
 
-    reason_code:        // This variable is set if payment_status is Reversed, Refunded, Canceled_Reversal, or Denied.
+    reason_code?:       // This variable is set if payment_status is Reversed, Refunded, Canceled_Reversal, or Denied.
         'adjustment_reversal'       // Reversal of an adjustment.
         | 'admin_fraud_reversal'    // The transaction has been reversed due to fraud detected by PayPal administrators.
         | 'admin_reversal'          // The transaction has been reversed by PayPal administrators.
@@ -201,7 +200,7 @@ export interface PaymentInformationVariables {
      * Pending, Completed, Denied, where x is a number starting with 1 that makes the IPN variable name unique;
      * The filters and their ID numbers are as follows:
      */
-    fraud_management_pending_filters_x:
+    fraud_management_pending_filters_x?:
         '1' // AVS No Match
         | '2' // AVS Partial Match
         | '3' // AVS Unavailable/Unsupported
