@@ -6,7 +6,7 @@
 along with descriptions for each property. And with type definitions you get auto-completion from your IDE.
  
 ## Installation
-Pull in the package from NPM:
+Pull in the package from npm:
  ```bash
  npm install paypal-ipn-types
  ```
