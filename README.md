@@ -1,9 +1,9 @@
 # PayPal IPN Types
  Tired of looking up PayPal's arguably terrible documentation every time you need to work with their IPN  system?
  
- This package contains type definitions for 
-[all properties PayPal might pass to you on an IPN request](https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables),
-along with descriptions for each property. And with type definitions you get auto-completion from your IDE.
+ This package contains TypeScript type definitions for 
+[all properties PayPal might pass to you on an IPN request](https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables)
+along with documentation for each property.
  
 ## Installation
 Pull in the package from npm:
